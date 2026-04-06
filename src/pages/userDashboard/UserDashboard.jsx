@@ -1,9 +1,7 @@
-import React from 'react'
+import DashboardShell from "@/components/dashboard/DashboardShell";
 
 function UserDashboard() {
-  return (
-    <div>UserDashboard</div>
-  )
+  return <DashboardShell />;
 }
 
-export default UserDashboard
+export default UserDashboard;
