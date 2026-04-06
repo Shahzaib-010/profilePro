@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #F5F5F5;
+  --foreground: #050505;
+  --surface: #f8f8f8;
+  --panel: #f1f1f1;
+  --muted: #5f5f5f;
+  --border: #d6d6d6;
+  --highlight: #facc15;
+  --highlight-foreground: #161616;
+  --highlight-soft: color-mix(in srgb, var(--highlight) 18%, transparent);
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.08);
+  --auth-shell: #f5f5f5;
+  --auth-card: #fcfcfc;
+  --auth-card-strong: #ffffff;
+  --auth-line: #e5e5e5;
+  --auth-muted: #6f6f6f;
+  --auth-brand-panel: linear-gradient(180deg, #17191d 0%, #101317 55%, #0c0f13 100%);
+  --auth-brand-overlay: radial-gradient(circle at top, rgba(251, 191, 36, 0.22), transparent 38%);
+  color-scheme: light;
+}
+
+.dark {
+  --background: #050505;
+  --foreground: #F5F5F5;
+  --surface: #111111;
+  --panel: #171717;
+  --muted: #b3b3b3;
+  --border: #2a2a2a;
+  --highlight: #facc15;
+  --highlight-foreground: #111111;
+  --highlight-soft: color-mix(in srgb, var(--highlight) 22%, transparent);
+  --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.35);
+  --auth-shell: #050505;
+  --auth-card: #101010;
+  --auth-card-strong: #161616;
+  --auth-line: #2a2a2a;
+  --auth-muted: #a3a3a3;
+  --auth-brand-panel: linear-gradient(180deg, #0d0f12 0%, #090b0d 55%, #050607 100%);
+  --auth-brand-overlay: radial-gradient(circle at top, rgba(250, 204, 21, 0.16), transparent 38%);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-app-bg: var(--background);
+  --color-app-fg: var(--foreground);
+  --color-app-surface: var(--surface);
+  --color-app-panel: var(--panel);
+  --color-app-muted: var(--muted);
+  --color-app-border: var(--border);
+  --color-app-highlight: var(--highlight);
+  --color-app-highlight-fg: var(--highlight-foreground);
+  --color-app-highlight-soft: var(--highlight-soft);
+  --color-auth-shell: var(--auth-shell);
+  --color-auth-card: var(--auth-card);
+  --color-auth-card-strong: var(--auth-card-strong);
+  --color-auth-line: var(--auth-line);
+  --color-auth-muted: var(--auth-muted);
+  --shadow-soft: var(--shadow-soft);
+}
+
+html {
+  background-color: var(--background);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+
+/* --------------------------Font------------------------------ */
+
+
+
+.geist{
+  font-family: "Geist", sans-serif;
+}
