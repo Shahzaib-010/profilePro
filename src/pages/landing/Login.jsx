@@ -28,7 +28,7 @@ function Login() {
 
     try {
       await login(form.email, form.password)
-      navigate('/user-dashboard', { replace: true })
+      navigate('/dashboard', { replace: true })
     } catch (err) {
       // Laravel sends errors as { message: "..." } or { errors: { email: [...] } }
       const msg =
@@ -43,7 +43,7 @@ function Login() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/user-dashboard', { replace: true })
+      navigate('/dashboard', { replace: true })
     }
   }, [isLoggedIn, navigate])
 

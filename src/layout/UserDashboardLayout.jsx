@@ -1,14 +1,10 @@
-import React from 'react'
-import DashboardSidebar from "@/components/dashboard/DashboardShell";
+import { Outlet } from "react-router-dom";
+import DashboardShell from "@/components/dashboard/DashboardShell";
 
-
-function UserDashboardLayout() {
+export default function UserDashboardLayout() {
   return (
-    <div>
-         <DashboardSidebar />;
-
-    </div>
-  )
+    <DashboardShell>
+      <Outlet />
+    </DashboardShell>
+  );
 }
-
-export default UserDashboardLayout
