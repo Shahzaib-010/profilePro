@@ -1,9 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import LandingPage from "../pages/LandingPage";
-import Signup from "../pages/Signup";
-import Login from "../pages/Login";
+import LandingPage from "../pages/landing/LandingPage";
+import Signup from "../pages/landing/Signup";
+import Login from "../pages/landing/Login";
 import UserDashboard from "../pages/userDashboard/UserDashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import UserDashboardLayout from "@/layout/UserDashboardLayout";
+import ResumeBuilder from "@/pages/userDashboard/ResumeBuilder";
 
 export function getRouter() {
   return createBrowserRouter([
@@ -35,9 +37,15 @@ export function getRouter() {
       path: "/user-dashboard",
       element: (
         <ProtectedRoute>
-          <UserDashboard />
+          <UserDashboardLayout />
         </ProtectedRoute>
-      )
+      ),
+      children:[
+        {
+          path:"/resumebuilder",
+          element:<ResumeBuilder />
+        },
+      ]
     },
     {
       path: "/signup",

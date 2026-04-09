@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Navbar from '../components/sections/Navbar'
+import Navbar from '../../components/sections/Navbar'
 
 
 function LandingPage() {
