@@ -7,8 +7,8 @@ import DashboardSidebar from "./DashboardSidebar";
 
 export default function DashboardShell({ children }) {
   return (
-    <SidebarProvider>
-      <DashboardSidebar />
+    <SidebarProvider >
+      <DashboardSidebar/>
 
       <SidebarInset className="min-h-svh bg-app-bg">
         {/* TOPBAR */}
