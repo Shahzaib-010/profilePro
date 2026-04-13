@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://profile-pro-api.chfarhanliaqat.site/api",
+  baseURL: "https://profile-pro-api.chfarhanliaqat.site/api", //resume-store
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json",
