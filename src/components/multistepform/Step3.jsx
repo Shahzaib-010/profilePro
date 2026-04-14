@@ -8,11 +8,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Plus, Trash2 } from "lucide-react";
 
 const positionSchema = z.object({
-  jobTitle:    z.string().min(1, "Job title is required"),
+  role:    z.string().min(1, "Job title is required"),
   company:     z.string().min(1, "Company is required"),
   location:    z.string().min(1, "Location is required"),
-  startDate:   z.string().min(1, "Start date is required"),
-  endDate:     z.string().optional(),
+  start_date:   z.string().min(1, "Start date is required"),
+  end_date:     z.string().optional(),
   currentJob:  z.boolean().default(false),
   description: z.string().min(1, "Description is required"),
 });
@@ -22,8 +22,8 @@ const formSchema = z.object({
 });
 
 const emptyPosition = {
-  jobTitle: "", company: "", location: "",
-  startDate: "", endDate: "", currentJob: false, description: "",
+  role: "", company: "", location: "",
+  start_date: "", end_date: "", currentJob: false, description: "",
 };
 
 const Step3 = forwardRef(function Step3({ defaultValues, onSave }, ref) {
@@ -75,10 +75,10 @@ const Step3 = forwardRef(function Step3({ defaultValues, onSave }, ref) {
 
               {/* Job Title + Company */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField control={form.control} name={`positions.${index}.jobTitle`}
+                <FormField control={form.control} name={`positions.${index}.role`}
                   render={({ field, fieldState }) => (
                     <FormItem>
-                      <FormLabel>Job Title <span className="text-red-500">*</span></FormLabel>
+                      <FormLabel>Role <span className="text-red-500">*</span></FormLabel>
                       <FormControl><Input placeholder="e.g. Software Engineer" {...field} /></FormControl>
                       {fieldState.error && <p className="text-red-500 text-sm">{fieldState.error.message}</p>}
                     </FormItem>
@@ -108,7 +108,7 @@ const Step3 = forwardRef(function Step3({ defaultValues, onSave }, ref) {
 
               {/* Start + End Date */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField control={form.control} name={`positions.${index}.startDate`}
+                <FormField control={form.control} name={`positions.${index}.start_date`}
                   render={({ field, fieldState }) => (
                     <FormItem>
                       <FormLabel>Start Date <span className="text-red-500">*</span></FormLabel>
@@ -117,7 +117,7 @@ const Step3 = forwardRef(function Step3({ defaultValues, onSave }, ref) {
                     </FormItem>
                   )}
                 />
-                <FormField control={form.control} name={`positions.${index}.endDate`}
+                <FormField control={form.control} name={`positions.${index}.end_date`}
                   render={({ field, fieldState }) => {
                     const isCurrentJob = form.watch(`positions.${index}.currentJob`);
                     return (
@@ -142,7 +142,7 @@ const Step3 = forwardRef(function Step3({ defaultValues, onSave }, ref) {
                         checked={field.value}
                         onCheckedChange={(checked) => {
                           field.onChange(checked);
-                          if (checked) form.setValue(`positions.${index}.endDate`, "");
+                          if (checked) form.setValue(`positions.${index}.end_date`, "");
                         }}
                       />
                     </FormControl>

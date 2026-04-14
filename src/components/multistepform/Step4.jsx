@@ -27,20 +27,20 @@ const months = [
 
 const educationSchema = z.object({
   degree: z.string().min(1, "Degree/Certificate is required"),
-  institution: z.string().min(1, "Institution is required"),
+  institute: z.string().min(1, "Institution is required"),
   location: z.string().min(1, "Location is required"),
-  startYear: z.string().min(1, "Start year is required"),
+  startDate: z.string().min(1, "Start year is required"),
   startMonth: z.string().optional(),
-  endYear: z.string().optional(),
+  endDate: z.string().optional(),
   endMonth: z.string().optional(),
   currentStudy: z.boolean().default(false),
   gpa: z.string().optional(),
-  additionalInfo: z.string().optional(),
+  information: z.string().optional(),
 }).superRefine((value, ctx) => {
-  if (!value.currentStudy && !value.endYear) {
+  if (!value.currentStudy && !value.endDate) {  
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
-      path: ["endYear"],
+      path: ["endDate"],
       message: "End year is required",
     });
   }
@@ -52,15 +52,15 @@ const formSchema = z.object({
 
 const emptyEducation = {
   degree: "",
-  institution: "",
+  institute: "",
   location: "",
-  startYear: "",
+  startDate: "",
   startMonth: "",
-  endYear: "",
+  endDate: "",
   endMonth: "",
   currentStudy: false,
   gpa: "",
-  additionalInfo: "",
+  information: "",
 };
 
 const selectClassName =
@@ -106,7 +106,7 @@ function EducationFields({ control, form, index, remove }) {
 
         <FormField
           control={control}
-          name={`educations.${index}.institution`}
+          name={`educations.${index}.institute`}
           render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel>Institution <span className="text-red-500">*</span></FormLabel>
@@ -139,7 +139,7 @@ function EducationFields({ control, form, index, remove }) {
           <div className="grid grid-cols-2 gap-3">
             <FormField
               control={control}
-              name={`educations.${index}.startYear`}
+              name={`educations.${index}.startDate`}
               render={({ field, fieldState }) => (
                 <FormItem>
                   <FormControl>
@@ -191,7 +191,7 @@ function EducationFields({ control, form, index, remove }) {
           <div className="grid grid-cols-2 gap-3">
             <FormField
               control={control}
-              name={`educations.${index}.endYear`}
+              name={`educations.${index}.endDate`}
               render={({ field, fieldState }) => (
                 <FormItem>
                   <FormControl>
@@ -252,7 +252,7 @@ function EducationFields({ control, form, index, remove }) {
                 onCheckedChange={(checked) => {
                   field.onChange(checked);
                   if (checked) {
-                    form.setValue(`educations.${index}.endYear`, "");
+                    form.setValue(`educations.${index}.endDate`, "");
                     form.setValue(`educations.${index}.endMonth`, "");
                   }
                 }}

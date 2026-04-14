@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { NavLink } from 'react-router-dom'
 
 const LandingPage = () => {
   return (
@@ -16,12 +17,12 @@ const LandingPage = () => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <button className="text-sm text-gray-600 hidden md:block">
+            <NavLink to="/signup"  className="text-sm text-gray-600 hidden md:block">
               Sign in
-            </button>
-            <button className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:scale-105 transition">
-              Create Your Link
-            </button>
+            </NavLink>
+            <NavLink to="/get-started" className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:scale-105 transition">
+              Get Started
+            </NavLink>
           </div>
         </div>
       </header>
