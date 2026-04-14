@@ -54,6 +54,8 @@ export function AuthProvider({ children }) {
     isLoggedIn: !!token,
   }), [user, token]);
 
+  console.log(login, user)
+
   return (
     <AuthContext.Provider value={value}>
       {children}
