@@ -1,7 +1,7 @@
  <button
             type="button"
             onClick={() => setTheme(isDark ? 'light' : 'dark')}
-            className="inline-flex items-center justify-center rounded-full border border-app-border bg-app-surface px-5 py-3 text-sm font-semibold text-app-fg shadow-soft transition hover:border-app-highlight hover:text-app-highlight"
+            className="inline-flex items-center justify-center rounded-full border border-app-border bg-app-surface px-5 py-3 text-sm font-semibold text-app-fg shadow-soft transition hover:border-app-highlight p-2 m-2 hover:text-app-highlight"
           >
             {isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           </button>
