@@ -5,11 +5,17 @@ import { TwoColumnLayout } from "./layouts/TwoColumnLayout";
 const ResumeRenderer = ({ selectedTemplate = "modern", resumeData }) => {
   const config = templateConfig[selectedTemplate];
 
-  // Helper to render component lists
+  if (!config) {
+    return <div className="p-8">Template not found</div>;
+  }
+
+  // Helper to render component lists with proper data passing
   const renderList = (list) => 
-    list.map(({ component: Component, key }, index) => (
-      <Component key={index} data={resumeData[key]} />
-    ));
+    list.map((item, index) => {
+      const Component = item.component;
+      const dataKey = item.key;
+      return <Component key={index} data={resumeData[dataKey]} />;
+    });
 
   if (config.layoutType === "one-column") {
     return (

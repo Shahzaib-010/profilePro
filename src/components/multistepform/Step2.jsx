@@ -105,7 +105,7 @@
 // export default Step2;
 
 
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -117,7 +117,7 @@ const formSchema = z.object({
   summary: z.string().max(500, "Summary cannot exceed 500 characters").optional(),
 });
 
-const Step2 = forwardRef(function Step2({ defaultValues, onSave }, ref) {
+const Step2 = forwardRef(function Step2({ defaultValues, onSave, onDraftChange }, ref) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -128,6 +128,11 @@ const Step2 = forwardRef(function Step2({ defaultValues, onSave }, ref) {
 
   const summaryValue = form.watch("summary") || "";
 
+  useEffect(() => {
+    if (onDraftChange) {
+      onDraftChange({ summary: summaryValue });
+    }
+  }, [summaryValue, onDraftChange]);
   useImperativeHandle(ref, () => ({
     submitForm: () => form.handleSubmit(onSave)(),
   }));

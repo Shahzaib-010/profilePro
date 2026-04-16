@@ -1,4 +1,5 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+
+import React, { forwardRef, useImperativeHandle, useEffect } from "react";
 import { useForm, useFieldArray, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -302,7 +303,7 @@ function EducationFields({ control, form, index, remove }) {
   );
 }
 
-const Step4 = forwardRef(function Step4({ defaultValues, onSave }, ref) {
+const Step4 = forwardRef(function Step4({ defaultValues, onSave, onDraftChange }, ref) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -315,6 +316,13 @@ const Step4 = forwardRef(function Step4({ defaultValues, onSave }, ref) {
     name: "educations",
   });
 
+  const educations = form.watch("educations");
+
+  useEffect(() => {
+    if (onDraftChange && educations) {
+      onDraftChange({ educations });
+    }
+  }, [educations, onDraftChange]);
   useImperativeHandle(ref, () => ({
     submitForm: () => form.handleSubmit(onSave)(),
   }));

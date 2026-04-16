@@ -54,8 +54,6 @@ export function AuthProvider({ children }) {
     isLoggedIn: !!token,
   }), [user, token]);
 
-  console.log(login, user)
-
   return (
     <AuthContext.Provider value={value}>
       {children}
@@ -63,7 +61,7 @@ export function AuthProvider({ children }) {
   );
 }
 
-// Custom hook — use this in any component
+/* eslint-disable react-refresh/only-export-components */
 export function useAuth() {
   return useContext(AuthContext);
 }

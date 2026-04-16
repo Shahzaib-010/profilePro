@@ -25,10 +25,10 @@ function hasExperience(step3) {
     step3?.positions?.length &&
       step3.positions.some(
         (position) =>
-          position?.jobTitle?.trim() &&
+          (position?.role || position?.jobTitle)?.trim() &&
           position?.company?.trim() &&
           position?.location?.trim() &&
-          position?.startDate?.trim()
+          (position?.start_date || position?.startDate)?.trim()
       )
   );
 }
@@ -39,9 +39,9 @@ function hasEducation(step4) {
       step4.educations.some(
         (education) =>
           education?.degree?.trim() &&
-          education?.institution?.trim() &&
+          (education?.institute || education?.institution)?.trim() &&
           education?.location?.trim() &&
-          education?.startYear?.trim()
+          (education?.startDate || education?.startYear)?.trim()
       )
   );
 }

@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -26,7 +26,7 @@ const emptyPosition = {
   start_date: "", end_date: "", currentJob: false, description: "",
 };
 
-const Step3 = forwardRef(function Step3({ defaultValues, onSave }, ref) {
+const Step3 = forwardRef(function Step3({ defaultValues, onSave, onDraftChange }, ref) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,6 +41,13 @@ const Step3 = forwardRef(function Step3({ defaultValues, onSave }, ref) {
     name: "positions",
   });
 
+  const positions = form.watch("positions");
+
+  useEffect(() => {
+    if (onDraftChange && positions) {
+      onDraftChange({ positions });
+    }
+  }, [positions, onDraftChange]);
   useImperativeHandle(ref, () => ({
     submitForm: () => form.handleSubmit(onSave)(),
   }));

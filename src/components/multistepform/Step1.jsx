@@ -208,7 +208,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { forwardRef, useImperativeHandle } from "react"
+import { forwardRef, useImperativeHandle, useEffect } from "react"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
@@ -222,7 +222,7 @@ const formSchema = z.object({
   country: z.string().optional(),
 })
 
-const Step1 = forwardRef(function Step1({ defaultValues, onSave }, ref) {
+  const Step1 = forwardRef(function Step1({ defaultValues, onSave, onDraftChange }, ref) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -232,6 +232,14 @@ const Step1 = forwardRef(function Step1({ defaultValues, onSave }, ref) {
     },
   })
 
+  // Watch all fields for real-time updates
+  const watchedValues = form.watch();
+
+  useEffect(() => {
+    if (onDraftChange) {
+      onDraftChange(watchedValues);
+    }
+  }, [watchedValues, onDraftChange]);
   useImperativeHandle(ref, () => ({
     submitForm: () => form.handleSubmit(onSave)(),
   }))
